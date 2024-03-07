@@ -1,0 +1,47 @@
+.mainbodyPanel{
+    background: #f8f8f8;
+    padding: 50px 12%;
+    display:flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.mainbodyPanel > .mainbodyProductpanel {
+    width: 70%;
+    display: grid;
+    gap: 40px;
+    
+}
+
+.productpanel{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.cmnproductpanel > h2{
+    padding-bottom: 40px;
+}
+
+.product {
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+}
+
+.product > .imgdiv {
+    padding: 20px;
+    background-color: #f8f8f8 ;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+}
+
+
+
+
+
+

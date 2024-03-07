@@ -1,0 +1,74 @@
+.cuponsearchPanel{
+
+    background: white;
+    border-radius: 5px;
+    padding: 15px; 
+    width: 100%;
+}
+
+.mainbodyRighttpanel{margin-top: 70px;}
+
+.cuponsearchPanel > h3 {
+   margin-bottom: 10px;
+}
+
+.cuponsearchbar > input {
+    height: 35px;
+    padding: 5px 5px;
+    border-radius: 5px;
+    border: 1px solid lightslategray
+}
+
+.cuponsearchbar > a > button {
+    height: 35px;
+    padding: 5px 10px;
+    color: white;
+    background: #e527b2;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.cartPanel {
+    background: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    
+}
+.productcartlist > .listitem > h3 {
+padding: 5px; 
+
+
+}
+.cartprice > .pricecmn {
+    display:flex;
+    gap: 10px;
+}
+
+.cartprice {
+    display: grid;
+    gap:5px;
+    margin-top: 10px;
+}
+
+.purchaseButton > a > button {
+    height: 40px;
+    width: 100%;
+    color:white;
+    background: #e527b2; 
+    border: none;
+    font-weight: 700;
+    border-radius: 5px;
+    margin-top:10px;
+}
+
+hr{
+    color: lightslategray;
+}
+
+
+
+    
+
+
