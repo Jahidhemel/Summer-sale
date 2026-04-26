@@ -3,152 +3,693 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="Assets/Css/header.css">
-    <link rel="stylesheet" href="Assets/Css/body.css">
-    <link rel="stylesheet" href="Assets/Css/mainbody.css">
-    <link rel="stylesheet" href="Assets/Css/rightpanel.css">
-</head> 
+    <meta name="description" content="Summer Sale — up to 70% off kitchenware, sportswear, and furniture. Use code SELL200 for 20% off orders 200+.">
+    <title>Summer Sale — Hot Deals on Kitchenware, Sportswear &amp; Furniture</title>
+    <link rel="icon" type="image/png" href="Assets/Images/congo.png">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bs-primary:        #ff6b35;
+            --bs-primary-rgb:    255, 107, 53;
+            --ss-coral:          #ff6b35;
+            --ss-coral-dark:     #e85a26;
+            --ss-yellow:         #ffd23f;
+            --ss-cream:          #fff8f0;
+            --ss-ink:            #1f2937;
+            --ss-mute:           #64748b;
+            --bs-border-radius:        14px;
+            --bs-border-radius-lg:     20px;
+            --bs-border-radius-xl:     28px;
+            --bs-body-font-family:     'Plus Jakarta Sans', system-ui, sans-serif;
+            --bs-body-color:           #1f2937;
+            --bs-body-bg:              #ffffff;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            color: var(--ss-ink);
+            scroll-behavior: smooth;
+        }
+
+        /* Buttons & color overrides */
+        .btn-primary {
+            --bs-btn-bg: var(--ss-coral);
+            --bs-btn-border-color: var(--ss-coral);
+            --bs-btn-hover-bg: var(--ss-coral-dark);
+            --bs-btn-hover-border-color: var(--ss-coral-dark);
+            --bs-btn-active-bg: var(--ss-coral-dark);
+            --bs-btn-active-border-color: var(--ss-coral-dark);
+            font-weight: 600;
+        }
+        .btn-outline-primary {
+            --bs-btn-color: var(--ss-coral);
+            --bs-btn-border-color: var(--ss-coral);
+            --bs-btn-hover-bg: var(--ss-coral);
+            --bs-btn-hover-border-color: var(--ss-coral);
+            --bs-btn-active-bg: var(--ss-coral);
+            --bs-btn-active-border-color: var(--ss-coral);
+            font-weight: 600;
+        }
+        .text-coral  { color: var(--ss-coral) !important; }
+        .bg-coral    { background-color: var(--ss-coral) !important; }
+        .bg-cream    { background-color: var(--ss-cream) !important; }
+        .bg-sunshine { background: linear-gradient(135deg, #ffd23f 0%, #ff6b35 100%); }
+
+        /* Navbar */
+        .navbar-brand { font-weight: 800; font-size: 1.4rem; }
+        .navbar-brand .brand-mark { color: var(--ss-coral); }
+        .nav-link { font-weight: 500; }
+        .navbar.scrolled { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+
+        /* Cart icon button */
+        .cart-icon-btn {
+            position: relative;
+            border: none;
+            background: var(--ss-cream);
+            color: var(--ss-coral);
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            transition: transform .2s ease;
+        }
+        .cart-icon-btn:hover { transform: translateY(-2px); }
+        .cart-icon-btn .cart-badge {
+            position: absolute;
+            top: -4px; right: -4px;
+            background: var(--ss-coral);
+            color: #fff;
+            font-size: .7rem; font-weight: 700;
+            min-width: 20px; height: 20px;
+            padding: 0 5px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center; justify-content: center;
+        }
+
+        /* Hero carousel */
+        .hero-slide {
+            min-height: 420px;
+            border-radius: var(--bs-border-radius-xl);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 3rem 2rem;
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-1 { background: linear-gradient(135deg, #ff6b35 0%, #ffd23f 100%); }
+        .hero-2 { background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); }
+        .hero-3 { background: linear-gradient(135deg, #ec4899 0%, #f97316 100%); }
+        .hero-slide h1 { font-weight: 800; font-size: clamp(2rem, 5vw, 3.5rem); }
+        .hero-slide .lead { opacity: .95; max-width: 30rem; }
+        .promo-pill {
+            display: inline-block;
+            background: rgba(255,255,255,.2);
+            backdrop-filter: blur(10px);
+            padding: .25rem .9rem;
+            border-radius: 999px;
+            font-size: .8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            margin-bottom: 1rem;
+        }
+
+        /* Promo banner */
+        .promo-banner {
+            background: var(--ss-cream);
+            border: 2px dashed var(--ss-coral);
+            border-radius: var(--bs-border-radius-lg);
+            padding: 1rem 1.5rem;
+        }
+        .promo-banner code {
+            background: var(--ss-coral);
+            color: #fff;
+            padding: .25rem .7rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: .95rem;
+        }
+
+        /* Product cards */
+        .product-card {
+            border: 1px solid #f1f5f9;
+            border-radius: var(--bs-border-radius-lg);
+            padding: 1.25rem;
+            transition: transform .25s ease, box-shadow .25s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.12);
+        }
+        .product-img-wrap {
+            background: var(--ss-cream);
+            border-radius: var(--bs-border-radius);
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .product-img-wrap img {
+            max-width: 75%;
+            max-height: 75%;
+            object-fit: contain;
+            transition: transform .35s ease;
+        }
+        .product-card:hover .product-img-wrap img { transform: scale(1.08); }
+        .product-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 .25rem;
+        }
+        .product-card .stars { color: #fbbf24; font-size: .85rem; }
+        .product-card .price {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--ss-coral);
+        }
+        .product-card .price .old {
+            font-size: .8rem;
+            color: var(--ss-mute);
+            text-decoration: line-through;
+            font-weight: 500;
+            margin-left: .25rem;
+        }
+
+        /* Cart sidebar */
+        .cart-sidebar {
+            background: #fff;
+            border: 1px solid #f1f5f9;
+            border-radius: var(--bs-border-radius-xl);
+            padding: 1.75rem;
+            box-shadow: 0 8px 24px -10px rgba(0,0,0,0.08);
+        }
+        @media (min-width: 992px) {
+            .cart-sidebar { position: sticky; top: 90px; }
+        }
+        .cart-list .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .75rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .cart-list .cart-item:last-child { border-bottom: 0; }
+        .cart-list .empty {
+            text-align: center;
+            color: var(--ss-mute);
+            padding: 2rem 0;
+        }
+        .cart-row {
+            display: flex; justify-content: space-between;
+            padding: .35rem 0;
+            font-size: .95rem;
+        }
+        .cart-row.total {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--ss-ink);
+            margin-top: .5rem;
+            padding-top: .85rem;
+            border-top: 2px dashed #e2e8f0;
+        }
+        .qty-btn {
+            width: 26px; height: 26px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            color: var(--ss-ink);
+            font-weight: 700;
+            line-height: 1;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .qty-btn:hover { background: var(--ss-cream); }
+
+        /* Toast position */
+        .toast-container { z-index: 1100; }
+
+        /* Footer */
+        footer {
+            background: var(--ss-ink);
+            color: #cbd5e1;
+        }
+        footer a { color: #cbd5e1; text-decoration: none; transition: color .2s; }
+        footer a:hover { color: var(--ss-coral); }
+        .social-circle {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.08);
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            transition: background .2s;
+        }
+        .social-circle:hover { background: var(--ss-coral); color: #fff !important; }
+    </style>
+</head>
 <body>
-    <header class="headerPanel">
-        <div class="headerContentPanel">
-            <h2>--- Sale Fever ---</h2>
-            <h1>Purchase TK 200 or above & get <span>20% off</span></h1>
-            <div class="promoCode">
-                <p>Use Promo Code</p>
-                <a href="#"><button>SELL200</button></a>
-            </div>
-        </div>
-        <div class="headerImagepanel">
-            <img src="Assets/Images/Summer 1.png" alt="bannerImage">
-        </div>
-    </header>
 
-    <div class="mainbodyPanel">
-        <div class="mainbodyProductpanel">
-            <div class="kitchenwarePanle cmnproductpanel">
-                <h2>Kithchenware</h2>
-                <div class="productpanel">
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod1.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>k.accessories</h3>
-                        <p>price 39.0 TK</p>
-                    </div>
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod2.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>k.accessories</h3>
-                        <p>price 25.0 TK</p>
-                    </div>
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod3.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>Home cooker</h3>
-                        <p>price 49.0 TK</p>
-                    </div>
-                </div>
-            </div>
-            <div class="sportswearPsnel cmnproductpanel">
-                <h2>Sportswear</h2>
-                <div class="productpanel">
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod4.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>Sports Black Cap</h3>
-                        <p>price 49.0 TK</p>
-                    </div>
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod5.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>Full Jersey Set</h3>
-                        <p>price 59.0 TK</p>
-                    </div>
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod6.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>Sports Cates</h3>
-                        <p>price 169.0 TK</p>
-                    </div>
-                </div>
-            </div>
-            <div class="furniture cmnproductpanel">
-                <h2>Furniture</h2>
-                <div class="productpanel">
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod7.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>Single Relax Chair</h3>
-                        <p>price 185.0 TK</p>
-                    </div>
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod8.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>Children Play</h3>
-                        <p>price 299.0 TK</p>
-                    </div>
-                    <div class="product">
-                        <div class="imgdiv"><img src="Assets/Images/prod9.png" alt="product1"></div>
-                        
-                        <div class="rating"><img src="Assets/Images/star.png" alt="productrating"></div>
-                        <h3>Flexible Sofa</h3>
-                        <p>price 399.0 TK</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="mainbodyRighttpanel">
-            <div class="cuponsearchPanel">
-                <h3>Have Coupon?</h3>
-                 <div class="cuponsearchbar">
-                    <input type="text" placeholder="Coupon Code"> 
-                    <a href="#"><button>Apply</button></a>
-                 </div>  
-                
-            </div>
-            <div class="cartPanel">
-                <div class="productcartlist">
-                    <div class="listitem">
-                        <h3>1. Home cooker</h3>
-                        <h3>2. Sports Cates</h3>
-                        <h3>3. Home cooker</h3>
-
-                    </div>
-                    
-                </div>
-                <hr>
-                <div class="cartprice">
-                    <div class="totalprice pricecmn">
-                        <h3>Totalprice:</h3>
-                        <span>257.00 TK</span>
-                    </div>
-                    <div class="Discount pricecmn">
-                        <h3>Discount:</h3>
-                        <span>51.00 TK</span>
-                    </div>
-                    <div class="total pricecmn">
-                        <h3>Total:</h3>
-                        <span>251.60 TK</span>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="purchaseButton">
-                    <a href="#"><button>Make Purchase</button></a>
+    <!-- ======================================================
+         NAVBAR
+         ====================================================== -->
+    <nav id="mainNav" class="navbar navbar-expand-lg sticky-top bg-white py-3 border-bottom">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+                <i class="bi bi-bag-heart-fill text-coral fs-3"></i>
+                Summer <span class="brand-mark">Sale</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-label="Toggle menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainMenu">
+                <ul class="navbar-nav mx-auto gap-lg-2">
+                    <li class="nav-item"><a class="nav-link"  href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link"  href="#shop">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link"  href="#deals">Deals</a></li>
+                    <li class="nav-item"><a class="nav-link"  href="#contact">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <button id="cartIconBtn" class="cart-icon-btn" type="button" aria-label="Open cart">
+                        <i class="bi bi-cart3 fs-5"></i>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
                 </div>
             </div>
         </div>
+    </nav>
 
 
+    <!-- ======================================================
+         PROMO ALERT
+         ====================================================== -->
+    <div class="container mt-4" id="home">
+        <div class="promo-banner d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+            <div>
+                <strong class="text-coral">🎉 Sale Fever:</strong>
+                Spend <strong>200 TK</strong> or more and save <strong>20%</strong> at checkout.
+            </div>
+            <div>
+                Use code <code>SELL200</code>
+                <button id="copyCodeBtn" class="btn btn-sm btn-outline-primary ms-2">
+                    <i class="bi bi-clipboard"></i> Copy
+                </button>
+            </div>
+        </div>
     </div>
+
+
+    <!-- ======================================================
+         HERO CAROUSEL
+         ====================================================== -->
+    <section class="container my-4">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="hero-slide hero-1">
+                        <div>
+                            <span class="promo-pill">🔥 Hot deals</span>
+                            <h1>Sale Fever<br>is on.</h1>
+                            <p class="lead">Up to 70% off across kitchenware, sportswear, and furniture. Limited time only.</p>
+                            <a href="#shop" class="btn btn-light btn-lg fw-bold mt-2">Start shopping</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="hero-slide hero-2">
+                        <div>
+                            <span class="promo-pill">📦 Free shipping</span>
+                            <h1>Free shipping<br>on orders 200+.</h1>
+                            <p class="lead">No code needed — your cart hits 200 TK and we'll handle delivery, on us.</p>
+                            <a href="#shop" class="btn btn-light btn-lg fw-bold mt-2">Browse products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="hero-slide hero-3">
+                        <div>
+                            <span class="promo-pill">🌞 Summer picks</span>
+                            <h1>Summer-ready<br>essentials.</h1>
+                            <p class="lead">Hand-picked best-sellers for the season — from beach gear to backyard furniture.</p>
+                            <a href="#shop" class="btn btn-light btn-lg fw-bold mt-2">See picks</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+
+    <!-- ======================================================
+         MAIN BODY — products + cart
+         ====================================================== -->
+    <section class="container my-5" id="shop">
+        <div class="row g-4">
+
+            <!-- Product catalog -->
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-1">Shop by category</h2>
+                <p class="text-secondary mb-4">Tap a category to filter the list.</p>
+
+                <!-- Category tabs -->
+                <ul class="nav nav-pills gap-2 mb-4" id="catTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active rounded-pill px-3" data-bs-toggle="pill" data-bs-target="#kitchen" type="button">
+                            <i class="bi bi-cup-hot me-1"></i> Kitchenware
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill px-3" data-bs-toggle="pill" data-bs-target="#sports" type="button">
+                            <i class="bi bi-trophy me-1"></i> Sportswear
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-pill px-3" data-bs-toggle="pill" data-bs-target="#furniture" type="button">
+                            <i class="bi bi-house-door me-1"></i> Furniture
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <!-- Kitchenware -->
+                    <div class="tab-pane fade show active" id="kitchen">
+                        <div class="row g-3">
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod1.png" alt="Steel mixing bowl"></div>
+                                    <div class="stars mb-1">★★★★★ <small class="text-secondary">(48)</small></div>
+                                    <h3>Steel Mixing Bowl</h3>
+                                    <p class="text-secondary small mb-2">Stainless steel, nesting set of 3.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">39 TK <span class="old">52 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Steel Mixing Bowl" data-price="39">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod2.png" alt="Knife set"></div>
+                                    <div class="stars mb-1">★★★★☆ <small class="text-secondary">(31)</small></div>
+                                    <h3>Chef Knife Set</h3>
+                                    <p class="text-secondary small mb-2">5-piece premium knife collection.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">25 TK <span class="old">36 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Chef Knife Set" data-price="25">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod3.png" alt="Home cooker"></div>
+                                    <div class="stars mb-1">★★★★★ <small class="text-secondary">(112)</small></div>
+                                    <h3>Home Cooker</h3>
+                                    <p class="text-secondary small mb-2">Multi-function 5L pressure cooker.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">49 TK <span class="old">68 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Home Cooker" data-price="49">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sportswear -->
+                    <div class="tab-pane fade" id="sports">
+                        <div class="row g-3">
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod4.png" alt="Black cap"></div>
+                                    <div class="stars mb-1">★★★★★ <small class="text-secondary">(67)</small></div>
+                                    <h3>Sports Black Cap</h3>
+                                    <p class="text-secondary small mb-2">Breathable, adjustable, UV-protected.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">49 TK <span class="old">65 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Sports Black Cap" data-price="49">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod5.png" alt="Jersey set"></div>
+                                    <div class="stars mb-1">★★★★☆ <small class="text-secondary">(89)</small></div>
+                                    <h3>Full Jersey Set</h3>
+                                    <p class="text-secondary small mb-2">Quick-dry shirt + shorts combo.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">59 TK <span class="old">79 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Full Jersey Set" data-price="59">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod6.png" alt="Sports cleats"></div>
+                                    <div class="stars mb-1">★★★★★ <small class="text-secondary">(204)</small></div>
+                                    <h3>Sports Cleats</h3>
+                                    <p class="text-secondary small mb-2">Studded grip for grass and turf.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">169 TK <span class="old">220 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Sports Cleats" data-price="169">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Furniture -->
+                    <div class="tab-pane fade" id="furniture">
+                        <div class="row g-3">
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod7.png" alt="Relax chair"></div>
+                                    <div class="stars mb-1">★★★★★ <small class="text-secondary">(56)</small></div>
+                                    <h3>Single Relax Chair</h3>
+                                    <p class="text-secondary small mb-2">Padded recliner with timber frame.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">185 TK <span class="old">240 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Single Relax Chair" data-price="185">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod8.png" alt="Children play"></div>
+                                    <div class="stars mb-1">★★★★☆ <small class="text-secondary">(38)</small></div>
+                                    <h3>Children Play Set</h3>
+                                    <p class="text-secondary small mb-2">Soft-foam climb &amp; slide combo.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">299 TK <span class="old">380 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Children Play Set" data-price="299">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <article class="product-card">
+                                    <div class="product-img-wrap"><img src="Assets/Images/prod9.png" alt="Sofa"></div>
+                                    <div class="stars mb-1">★★★★★ <small class="text-secondary">(91)</small></div>
+                                    <h3>Flexible Sofa</h3>
+                                    <p class="text-secondary small mb-2">Modular 3-seater with washable covers.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="price">399 TK <span class="old">520 TK</span></span>
+                                        <button class="btn btn-primary btn-sm rounded-pill add-to-cart"
+                                                data-name="Flexible Sofa" data-price="399">
+                                            <i class="bi bi-plus-lg"></i> Add
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Cart sidebar -->
+            <aside class="col-lg-4" id="deals">
+                <div class="cart-sidebar">
+                    <h2 class="h5 fw-bold d-flex align-items-center gap-2 mb-3">
+                        <i class="bi bi-cart3 text-coral"></i> Your Cart
+                    </h2>
+
+                    <!-- Coupon -->
+                    <form id="couponForm" class="mb-3">
+                        <label for="couponInput" class="form-label small fw-semibold mb-1">Have a coupon?</label>
+                        <div class="input-group">
+                            <input id="couponInput" type="text" class="form-control" placeholder="Enter code" autocomplete="off">
+                            <button class="btn btn-outline-primary" type="submit">Apply</button>
+                        </div>
+                        <div id="couponMsg" class="form-text small mt-1"></div>
+                    </form>
+
+                    <hr>
+
+                    <!-- Cart items -->
+                    <div id="cartList" class="cart-list mb-3">
+                        <div class="empty">
+                            <i class="bi bi-bag fs-1 d-block mb-2 text-secondary opacity-50"></i>
+                            Your cart is empty.<br>
+                            <small>Pick a product to get started.</small>
+                        </div>
+                    </div>
+
+                    <!-- Pricing -->
+                    <div class="cart-totals" id="cartTotals" style="display:none;">
+                        <hr>
+                        <div class="cart-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">0 TK</span>
+                        </div>
+                        <div class="cart-row text-coral fw-semibold" id="discountRow" style="display:none;">
+                            <span>Discount</span>
+                            <span id="discount">−0 TK</span>
+                        </div>
+                        <div class="cart-row total">
+                            <span>Total</span>
+                            <span id="total">0 TK</span>
+                        </div>
+                        <button id="purchaseBtn" class="btn btn-primary w-100 rounded-pill mt-3 py-2 fw-bold">
+                            <i class="bi bi-bag-check me-1"></i> Make Purchase
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+
+    <!-- ======================================================
+         FOOTER
+         ====================================================== -->
+    <footer id="contact" class="mt-5 py-5">
+        <div class="container">
+            <div class="row g-4 align-items-start">
+                <div class="col-md-5">
+                    <h3 class="h4 fw-bold text-white d-flex align-items-center gap-2 mb-3">
+                        <i class="bi bi-bag-heart-fill text-coral"></i>
+                        Summer <span class="text-coral">Sale</span>
+                    </h3>
+                    <p class="small">
+                        A demo Bootstrap landing page showcasing layout, components, and interactions —
+                        built as a portfolio piece by Md. Jahidul Islam Hemel.
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="text-white text-uppercase small mb-3">Shop</h6>
+                    <ul class="list-unstyled small d-grid gap-2">
+                        <li><a href="#shop">All products</a></li>
+                        <li><a href="#shop">Kitchenware</a></li>
+                        <li><a href="#shop">Sportswear</a></li>
+                        <li><a href="#shop">Furniture</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-white text-uppercase small mb-3">Follow</h6>
+                    <div class="d-flex gap-2 mb-3">
+                        <a href="https://www.linkedin.com/in/md-jahidul-islam-hemel" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-circle">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://www.facebook.com/jahid.hemel" target="_blank" rel="noopener" aria-label="Facebook" class="social-circle">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="mailto:jahidhemel@gmail.com" aria-label="Email" class="social-circle">
+                            <i class="bi bi-envelope-fill"></i>
+                        </a>
+                    </div>
+                    <p class="small mb-0">
+                        Questions? <a href="mailto:jahidhemel@gmail.com" class="text-coral">jahidhemel@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary opacity-25">
+            <p class="small text-center mb-0">
+                &copy; <span id="year">2026</span> Summer Sale demo. Built by
+                <a href="https://jahidhemel.github.io" target="_blank" rel="noopener" class="text-coral fw-semibold">Md. Jahidul Islam Hemel</a>.
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- ======================================================
+         TOAST CONTAINER + DEMO MODAL (created in JS)
+         ====================================================== -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastHolder"></div>
+
+    <div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-body text-center p-4 p-md-5">
+                    <div class="mb-3">
+                        <i class="bi bi-emoji-smile text-coral" style="font-size:3rem"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Just a demo!</h4>
+                    <p class="text-secondary mb-4">
+                        Hey! This is a demo from my portfolio, so checkout isn't wired up.
+                        Drop me an email if you'd like to chat.
+                    </p>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                        <a href="mailto:jahidhemel@gmail.com" class="btn btn-primary rounded-pill px-4">
+                            <i class="bi bi-envelope-fill me-1"></i> Email Hemel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS bundle (Popper + Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Assets/js/main.js" defer></script>
 </body>
 </html>
